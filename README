@@ -1,0 +1,53 @@
+Note - Please run all command from the root of the project.
+
+Dependencies Installation - 
+
+pip install -r requirements.txt
+
+
+Setup and be able to run the django project you need to add some columns manually,
+because the model defined previously was un-managed so columns need to be defined through mysql cli.
+
+
+
+Two columns are needed to be added as follows in the Records table- 
+
+subject
+duration
+
+SQL commands for the above columns are -
+
+ALTER TABLE Records ADD subject VARCHAR(1024);
+ALTER TABLE Records ADD duration FLOAT(20);
+
+
+SHORTCUT FOR DATABASE SETUP
+
+Create a Database in mysql with name SIC
+restore the database dump named - 'databasebackup_sai.sql' in the root of the project and you are good to go
+
+
+Once the database is updated you need to run 2 programs in the background using the following command in the virtualenv with all dependencies installed - 
+
+
+
+python3 detection/Detector.py
+python3 websocketserver.py
+
+Please keep the programs running in the background.
+
+Now you need to run the django app - 
+
+python3 manage.py migrate # Optional if migrations are already done no need to run
+
+python3 manage.py runserver
+
+
+Please note that - 
+
+The real-time data is transmitted from the detector program to the frontend UI using webscoket. 
+The websocket server is running on port 9000
+
+An example script "websocketclient.py" is present in the root directory of the folder to test if the websocket is working correctly or not
+
+

@@ -1,0 +1,9 @@
+Django==3.1
+spacy
+mysqlclient==2.0.3
+websocket-client==1.2.1
+autobahn==20.2.1
+Opencv-Python
+Tensorflow
+Numpy
+Pygame

@@ -1,0 +1,74 @@
+{% extends "webapp/base.html" %}
+
+{% block content %}
+<div class="container" style="margin-top: 5rem;">
+    
+    {% if message %}
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            {{message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+
+    <div class="row">
+      <div class="col-7">
+        <div style="min-height: 80%">
+            <script>
+                console.log("{{index}}")
+            </script>
+            <p>
+                <span style="font-weight:bold; font-size: 1.5rem;" class="text-info">Topic : </span>
+                <span style="font-size: 1.5rem;" class="text-secondary">{{email}}</span>
+            </p>
+  
+            <p>
+              <span style="font-weight: bold; font-size: 1.5rem;" class="text-info">Body : </span>
+              <span style="font-size: 1.5rem;" class="text-secondary">{{body}}</span>
+            </p>
+        </div>
+          
+        
+        <div class="row">
+            <div class="col-8">
+                <form action="{% url 'delete_topic' %}">
+                    <input type="hidden" name="index" value="{{index}}" />
+                    <button type="submit" class="btn btn-outline-dark">
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </form>
+            </div>
+
+            <span style="margin-right: 5px;">
+                <form action="{% url 'prev' %}">
+                    <input type="hidden" name="index" value="{{index}}" />
+                    <button type="submit" class="btn btn-outline-dark">
+                        <i class="fa fa-arrow-left"></i>
+                    </button>
+                </form>
+            </span>
+
+            <span>
+                <form action="{% url 'next' %}">
+                    <input type="hidden" name="index" value="{{index}}" />
+                    <button type="submit" class="btn btn-outline-dark">
+                        <i class="fa fa-arrow-right"></i>
+                    </button>
+                </form>
+            </span>
+        </div>
+      </div>
+      <div class="col">
+      </div>
+      <div class="col">
+        <form action="{% url 'detect_on' %}">
+            <button class="btn btn-outline-primary" type="submit">Detection On</button>
+        </form> 
+        <form action="{% url 'detect_off' %}">
+            <button style="margin-top:10px;" class="btn btn-outline-secondary" type="submit">Detection Off</button>
+        </form>  
+      </div>
+    </div>
+
+{% endblock %}
